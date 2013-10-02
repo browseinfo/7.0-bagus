@@ -1,0 +1,15 @@
+from openerp.osv import fields, osv
+
+class bank_journal_report(osv.osv_memory):
+    _name = "bank.journal.report"
+    _description = "Bank Journal Report"
+
+    _columns = {
+        'journal_ids': fields.many2one('account.journal', string='Journals', required=True),
+        'filter': fields.selection([('filter_no', 'No Filters'), ('filter_date', 'Date'), ('filter_period', 'Periods')], "Filter by"),
+        'period_from': fields.many2one('account.period', 'Start Period'),
+        'period_to': fields.many2one('account.period', 'End Period'),
+        'date_from': fields.date("Start Date"),
+        'date_to': fields.date("End Date"),
+    }
+bank_journal_report()

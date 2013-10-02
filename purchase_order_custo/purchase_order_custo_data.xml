@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <!-- Delivery -->
+        <record id="purchase_delivery_1" model="purchase.delivery">
+            <field name="name">1 Month</field>
+            <field name="description">5 Month</field>
+        </record>
+        <record id="purchase_delivery_3" model="purchase.delivery">
+            <field name="name">3 Month</field>
+            <field name="description">3 Month</field>
+        </record>
+        <record id="purchase_delivery_5" model="purchase.delivery">
+            <field name="name">5 Month</field>
+            <field name="description">5 Month</field>
+        </record>
+        <record id="purchase_delivery_10" model="purchase.delivery">
+            <field name="name">10 Month</field>
+            <field name="description">10 Month</field>
+        </record>
+        <record id="purchase_delivery_12" model="purchase.delivery">
+            <field name="name">12 Month</field>
+            <field name="description">12 Month</field>
+        </record>
+        
+        <!-- Packing -->
+        <record id="purchase_packaging_standerd" model="purchase.packaging">
+            <field name="name">Our Standerd Packing</field>
+            <field name="description">Our Standerd Packing</field>
+        </record>
+        <record id="purchase_packaging_delux" model="purchase.packaging">
+            <field name="name">Our Deluxe Packing</field>
+            <field name="description">Our Deluxe Packing</field>
+        </record>
+        <record id="purchase_packaging_cust" model="purchase.packaging">
+            <field name="name">Customer Define packing</field>
+            <field name="description">Customer Define packing</field>
+        </record>
+        
+        <!-- destination -->
+        <record id="purchase_destination_j" model="purchase.destination">
+            <field name="name">Jakarta</field>
+            <field name="description">Jakarta</field>
+        </record>
+        <record id="purchase_destination_b" model="purchase.destination">
+            <field name="name">Bandung</field>
+            <field name="description">Bandung</field>
+        </record>
+        <record id="purchase_destination_y" model="purchase.destination">
+            <field name="name">Yogyakarta</field>
+            <field name="description">Yogyakarta</field>
+        </record>
+
+    </data>
+</openerp>

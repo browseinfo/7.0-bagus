@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_purchase_bagus_form" model="ir.ui.view">
+            <field name="name">bagus.purchase.order.form.view</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='state']" position="before">
+                    <button string="Generate payment lines" name="generate_payment_lines"  type="object" attrs="{'invisible': [ ('state','!=', 'approved')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="before">
+                    <group>
+                      <group>
+                        <field name="project"/>
+                        <field name="destination_id" widget="selection"/>
+                        <field name="cash_mark"/>
+                        <field name="packing_id" widget="selection"/>
+                       
+                      </group>
+                      <group>
+                        <field name="delivery_date"/>
+                        <field name="delivery_id" widget="selection"/>
+                        <field name="delivery_mark"/>
+                        <field name="payment_term_id" widget="selection"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@string='Purchase Order']" position="after">
+                    <page string="Payment Lines">
+                    <group>
+                         <field name="pac_file"/>
+                     </group>
+                        <field name="payment_line">
+                            <tree string="Payment Lines" editable="bottom">
+                                <field name="name"/>
+                                <field name="percent"/>
+                                <field name="amount"/>
+                                <field name="due_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_stock_in_form" model="ir.ui.view">
+            <field name="name">bagus.stock.picking.in.form.view</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="project"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_purchase_form" model="ir.ui.view">
+            <field name="name">bagus.account.origin.form.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_position']" position="after">
+                    <field name="project"/>
+                </xpath>
+            </field>
+        </record>
+        
+<!-- Delivery -->
+
+        <record id="view_purchase_delivery_tree" model="ir.ui.view">
+            <field name="name">purchase.delivery.tree</field>
+            <field name="model">purchase.delivery</field>
+            <field name="arch" type="xml">
+                <tree string="purchase Delivery Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_purchase_delivery_form">
+            <field name="name">purchase.delivery.form</field>
+            <field name="model">purchase.delivery</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Delivery Budget" version="7.0">
+                    <group>
+                     <field name="name"/>
+                    <field name="description"/>
+                  </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_purchase_delivery" model="ir.actions.act_window">
+            <field name="name">Purchase Delivery</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.delivery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          <menuitem
+            action="action_purchase_delivery" id="menu_action_purchase_delivery"
+            parent="purchase.menu_purchase_config_purchase" sequence="10" />
+        
+        <record id="view_purchase_packaging_tree" model="ir.ui.view">
+            <field name="name">purchase.packaging.tree</field>
+            <field name="model">purchase.packaging</field>
+            <field name="arch" type="xml">
+                <tree string="purchase Packaging Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view__purchase_packaging_form">
+            <field name="name">purchase.packaging.form</field>
+            <field name="model">purchase.packaging</field>
+            <field name="arch" type="xml">
+                <form string="purchase Packaging Budget" version="7.0">
+                    <group>
+                     <field name="name"/>
+                    <field name="description"/>
+                  </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_packaging9" model="ir.actions.act_window">
+            <field name="name">Purchase Packaging</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.packaging</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          <menuitem
+            action="action_purchase_packaging9" id="menu_action_purchase_packaging9"
+             parent="purchase.menu_purchase_config_purchase" sequence="10" />
+             
+
+        <record id="view_purchase_destination_tree" model="ir.ui.view">
+            <field name="name">purchase.destination.tree</field>
+            <field name="model">purchase.destination</field>
+            <field name="arch" type="xml">
+                <tree string="purchase Destination Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_destination_form">
+            <field name="name">purchase.destination.form</field>
+            <field name="model">purchase.destination</field>
+            <field name="arch" type="xml">
+                <form string="purchase Destination Budget" version="7.0">
+                    <group>
+                     <field name="name"/>
+                    <field name="description"/>
+                  </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_destination" model="ir.actions.act_window">
+            <field name="name">Purchase Destination Budget</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.destination</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          <menuitem
+            action="action_purchase_destination" id="menu_action_purchase_destination"
+            parent="purchase.menu_purchase_config_purchase" sequence="10" />
+
+    </data>
+</openerp>

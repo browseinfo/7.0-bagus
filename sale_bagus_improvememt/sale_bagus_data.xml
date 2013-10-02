@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <!-- Delivery -->
+        <record id="sale_delivery_1" model="sale.delivery">
+            <field name="name">1 Month</field>
+            <field name="description">5 Month</field>
+        </record>
+        <record id="sale_delivery_3" model="sale.delivery">
+            <field name="name">3 Month</field>
+            <field name="description">3 Month</field>
+        </record>
+        <record id="sale_delivery_5" model="sale.delivery">
+            <field name="name">5 Month</field>
+            <field name="description">5 Month</field>
+        </record>
+        <record id="sale_delivery_10" model="sale.delivery">
+            <field name="name">10 Month</field>
+            <field name="description">10 Month</field>
+        </record>
+        <record id="sale_delivery_12" model="sale.delivery">
+            <field name="name">12 Month</field>
+            <field name="description">12 Month</field>
+        </record>
+        
+        <!-- Packing -->
+        <record id="sale_packaging_standerd" model="sale.packaging">
+            <field name="name">Our Standerd Packing</field>
+            <field name="description">Our Standerd Packing</field>
+        </record>
+        <record id="sale_packaging_delux" model="sale.packaging">
+            <field name="name">Our Deluxe Packing</field>
+            <field name="description">Our Deluxe Packing</field>
+        </record>
+        <record id="sale_packaging_cust" model="sale.packaging">
+            <field name="name">Customer Define packing</field>
+            <field name="description">Customer Define packing</field>
+        </record>
+        
+        <!-- Payment -->
+        <record id="sale_payment_30" model="sale.payment">
+            <field name="name">30% Down payment</field>
+            <field name="description">30% Down payment</field>
+        </record>
+        <record id="sale_payment_40" model="sale.payment">
+            <field name="name">40% Down payment</field>
+            <field name="description">40% Down payment</field>
+        </record>
+        <record id="sale_payment_50" model="sale.payment">
+            <field name="name">50% Down payment</field>
+            <field name="description">50% Down payment</field>
+        </record>
+        
+        <!-- destination -->
+        <record id="sale_destination_j" model="sale.destination">
+            <field name="name">Jakarta</field>
+            <field name="description">Jakarta</field>
+        </record>
+        <record id="sale_destination_b" model="sale.destination">
+            <field name="name">Bandung</field>
+            <field name="description">Bandung</field>
+        </record>
+        <record id="sale_destination_y" model="sale.destination">
+            <field name="name">Yogyakarta</field>
+            <field name="description">Yogyakarta</field>
+        </record>
+        
+        <!-- Inspection -->
+        <record id="sale_inspection_a" model="sale.inspection">
+            <field name="name">A</field>
+            <field name="description">A</field>
+        </record>
+        <record id="sale_inspection_b" model="sale.inspection">
+            <field name="name">B</field>
+            <field name="description">B</field>
+        </record>
+        <record id="sale_inspection_c" model="sale.inspection">
+            <field name="name">C</field>
+            <field name="description">C</field>
+        </record>
+        <record id="sale_inspection_d" model="sale.inspection">
+            <field name="name">D</field>
+            <field name="description">D</field>
+        </record>
+
+    </data>
+</openerp>

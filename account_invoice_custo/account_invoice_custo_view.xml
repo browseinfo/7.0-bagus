@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_account_invoice_custom" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="formm"/>
+                    <field name="to"/>
+                    <field name="issue_date"/>
+                </field>
+                <field name="comment" position="after">
+                    <field name="trade_terms" placeholder='Trade Terms'/>
+                </field>
+                <field name="move_id" position="after">
+                    <field name="vessal"/>
+                    <field name="consignee"/>
+                    <field name="lc_no"/>
+                    <field name="lc_issue_bank"/>
+                    <field name="tax_code"/>
+                </field>
+                <xpath expr="//field[@name='user_id']" position="replace" >
+                    <field name="user_id" string="Shipping Agent"/>
+                </xpath>
+                <xpath expr="//field[@name='tax_line']" position="after" >
+                    <field name="account_tax_custo_line" nolabel="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_custom1" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="formm"/>
+                    <field name="to"/>
+                    <field name="issue_date"/>
+                </field>
+                <field name="comment" position="after">
+                    <field name="trade_terms" placeholder='Trade Terms'/>
+                </field>
+                <field name="period_id" position="after">
+                    <field name="vessal"/>
+                    <field name="consignee"/>
+                    <field name="lc_no"/>
+                    <field name="lc_issue_bank"/>
+                    <field name="tax_code"/>
+                    <field name="account_tax_custo_line" />
+                </field>
+                <xpath expr="//field[@name='user_id']" position="replace" >
+                    <field name="user_id" string="Shipping Agent"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_bank_branch_custom" model="ir.ui.view">
+            <field name="name">res.partner.bank.form.inherit</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <field name="acc_number" position="after">
+                    <field name="branch"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_invoice_custom1_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="replace" >
+                    <field name="user_id" string="Shipping Agent"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_tax_custo_tree" model="ir.ui.view">
+            <field name="name">account.tax.custo.tree</field>
+            <field name="model">account.tax.custo</field>
+            <field name="arch" type="xml">
+                <tree string="Account tax" editable="top">
+                    <field name="tarif"/>
+                    <field name="dpp"/>
+                    <field name="ppn"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

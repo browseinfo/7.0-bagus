@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+   <record id="view_delivery_order_custo_graph" model="ir.ui.view">
+         <field name="name">delivery.order.custo.graph</field>
+         <field name="model">sale.report</field>
+         <field name="priority" eval="32"/>
+         <field name="arch" type="xml">
+             <graph string="products" type="bar">
+                 <field name="product_id"/>
+                 <field name="price_total"/>
+             </graph>
+         </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_delivery_order_custo_graph">
+            <field name="name">Products</field>
+            <field name="res_model">sale.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_delivery_order_custo_graph"/>
+         </record>
+
+   <record id="view_delivery_order_custo_patrtner_graph" model="ir.ui.view">
+         <field name="name">delivery.order.custo.partner.graph</field>
+         <field name="model">sale.report</field>
+         <field name="priority" eval="32"/>
+         <field name="arch" type="xml">
+             <graph string="partners" type="bar">
+                 <field name="partner_id"/>
+                 <field name="price_total"/>
+             </graph>
+         </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_delivery_order_custo_partner_graph">
+            <field name="name">partners</field>
+            <field name="res_model">sale.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_delivery_order_custo_patrtner_graph"/>
+         </record>
+
+
+        <record id="board_delivery_order_custo_form" model="ir.ui.view">
+            <field name="name">board.otc.license.form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="otc license board" version="7.0">
+                    <board style="2-1">
+                        <column>
+                            <action name="%(action_delivery_order_custo_graph)d" string="Products"/>
+                        </column>
+                        <column>
+                            <action name="%(action_delivery_order_custo_partner_graph)d" string="Partners"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_board_delivery_order_custo" model="ir.actions.act_window">
+            <field name="name">Partners</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="board_delivery_order_custo_form"/>
+        </record>
+
+        <menuitem   id="menu_board_delivery_order" 
+                    parent="base.menu_reporting_dashboard" 
+                    action="open_board_delivery_order_custo" 
+                    sequence="25" 
+                    />
+                    
+                    
+
+    
+    </data>
+</openerp>

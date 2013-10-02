@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     <report auto="False" 
+            id="account_invoice_custo" 
+            model="account.invoice" 
+            name="account.invoice.custo" 
+            rml="account_invoice_custo/report/account_print_overdue.rml" 
+            string="Account Invoice"/>
+    </data>
+</openerp>

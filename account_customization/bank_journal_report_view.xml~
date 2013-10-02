@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+        <record id="bank_journal_report_view" model="ir.ui.view">
+            <field name="name">Bank Journal Report</field>
+            <field name="model">bank.journal.report</field>
+            <field name="arch" type="xml">
+            <form string="Report Options" version="7.0">
+                <label string=""/>
+                    <group>
+                        <field name="journal_ids" domain="[('type', '=', 'bank')]"/>
+                        <field name="filter"/>
+                    </group>
+                    <group string="Dates"  attrs="{'invisible':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}">
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                    <group string="Periods" attrs="{'invisible':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}">
+                        <field name="period_from" />
+                        <field name="period_to"/>
+                    </group>
+                <footer>
+                    <button name="check_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                    or 
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_bank_journal_report_menu" model="ir.actions.act_window">
+            <field name="name">Bank Journal Report</field>
+            <field name="res_model">bank.journal.report</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="view_id" ref="bank_journal_report_view"/>
+             <field name="target">new</field>
+        </record>
+        <menuitem icon="STOCK_PRINT" name="Bank Journal" action="action_bank_journal_report_menu" id="menu_bank_report_report" parent="account.menu_journals_report"/>
+    </data>
+</openerp>

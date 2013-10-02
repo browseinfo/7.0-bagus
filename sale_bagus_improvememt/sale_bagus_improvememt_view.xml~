@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+        <record id="view_order_bagus_form" model="ir.ui.view">
+            <field name="name">bagus.sale.order.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_cancel']" position="after">
+                    <button string="Generate payment lines" name="generate_payment_lines" states="manual,progress" type="object" icon="gtk-execute"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="before">
+                <group>
+                    <group>
+                        <field name="project"/>
+                        <field name="delivery_id"/>
+                        <field name="packing_id"/>
+                        <field name="payment_id"/>
+                    </group>
+                    <group>
+                        <field name="destination_id"/>
+                        <field name="inspection_id"/>
+                        <field name="validity"/>
+                    </group>
+                </group>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="replace">
+                    <field name="amount_total"/>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']" position="after">
+                    <page string="Payment Lines">
+                        <group>
+                            <field name="pac_file"/>
+                        </group>
+                        <field name="payment_line">
+                            <tree string="Payment Lines" editable="bottom">
+                                <field name="name"/>
+                                <field name="percent"/>
+                                <field name="amount"/>
+                                <field name="due_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_order_form" model="ir.ui.view">
+            <field name="name">bagus.stock.picking.form.view</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="project"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_order_form" model="ir.ui.view">
+            <field name="name">bagus.account.invoice.form.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_position']" position="after">
+                    <field name="project"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_delivery_tree" model="ir.ui.view">
+            <field name="name">sale.delivery.tree</field>
+            <field name="model">sale.delivery</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Delivery Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_packaging_tree" model="ir.ui.view">
+            <field name="name">sale.packaging.tree</field>
+            <field name="model">sale.packaging</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Packaging Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_payment_tree" model="ir.ui.view">
+            <field name="name">sale.payment.tree</field>
+            <field name="model">sale.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Payment Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_destination_tree" model="ir.ui.view">
+            <field name="name">sale.destination.tree</field>
+            <field name="model">sale.destination</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Destination Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_inspection_tree1" model="ir.ui.view">
+            <field name="name">sale.inspection.tree1</field>
+            <field name="model">sale.inspection</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Inspection Budget" editable="top">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sale_inspection7" model="ir.actions.act_window">
+            <field name="name">Sales Inspection Budget7</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.inspection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sale_delivery8" model="ir.actions.act_window">
+            <field name="name">Sales Delivery Budget8</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.delivery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sale_packaging9" model="ir.actions.act_window">
+            <field name="name">Sales Packaging Budget9</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.packaging</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sale_payment0" model="ir.actions.act_window">
+            <field name="name">Sales Payment Budget0</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sale_destination12" model="ir.actions.act_window">
+            <field name="name">Sales Destination Budget12</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.destination</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

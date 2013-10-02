@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     <report auto="False" 
+            id="delivery_order_custo" 
+            model="stock.picking.out" 
+            name="delivery.order.custo" 
+            rml="delivery_order_custo/report/delivery_order_custo.rml" 
+            string="Delivery Order "/>
+
+     <report auto="False" 
+            id="delivery_order_custo_surat" 
+            model="stock.picking.out" 
+            name="delivery.order.surat.jalan" 
+            rml="delivery_order_custo/report/delivery_order_surat_jalan.rml" 
+            string="Delivery Order[Suarat Jalan]"/>
+    </data>
+</openerp>

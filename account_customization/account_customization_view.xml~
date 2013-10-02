@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+     
+        <record id="view_account_invoice_custom" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="before">
+                    <field name="invoice_type_id" on_change="onchange_invoice_type(invoice_type_id)"/>
+                </field>
+                <field name="journal_id" position="replace">
+                    <field name="journal_id" readonly='1'/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_invoice_type_tree" model="ir.ui.view">
+            <field name="name">invoice.type.tree</field>
+            <field name="model">invoice.type</field>
+            <field name="arch" type="xml">
+                <tree string="Account Invoice" editable="top">
+                    <field name="name"/>
+                    <field name="journal_id"  domain="[('type','in',('sale','sale_refund'))]"/>
+                    <field name="type" string="Type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_invoice_type_form" model="ir.ui.view">
+            <field name="name">invoice.type.form</field>
+            <field name="model">invoice.type</field>
+            <field name="arch" type="xml">
+                <form string="Account Invoice">
+                    <field name="name"/>
+                    <field name="journal_id" domain="[('type','in',('sale','sale_refund'))]"/>
+                    <field name="type" string="Type"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_invoice_type_menu" model="ir.actions.act_window">
+            <field name="name">Invoice Type</field>
+            <field name="res_model">invoice.type</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree</field>
+             <field name="view_id" ref="view_invoice_type_tree"/>
+        </record>
+        <menuitem id="menu_invoice_type" sequence="16" name="Invoice Type" parent="account.menu_finance_configuration" action="action_invoice_type_menu"/>
+    </data>
+</openerp>

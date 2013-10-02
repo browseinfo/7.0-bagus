@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     <report auto="False" 
+            id="account_invoice_custo" 
+            model="account.invoice" 
+            name="account.invoice.custo" 
+            rml="account_invoice_custo/report/account_invoice_custo.rml" 
+            string="Account Invoice"/>
+            
+            <report auto="False" 
+            id="account_tax_in" 
+            model="account.invoice" 
+            name="account.tax.in" 
+            rml="account_invoice_custo/report/account_tax_in.rml" 
+            string="Account Tax In"/>
+            
+            <report auto="False" 
+            id="account_tax_out" 
+            model="account.invoice" 
+            name="account.tax.out" 
+            rml="account_invoice_custo/report/account_tax_out.rml" 
+            string="Account Tax Out"/>
+    </data>
+</openerp>

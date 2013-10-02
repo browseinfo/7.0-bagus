@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False" id="report_sale_order_bagus" model="sale.order" name="sale.order.bagus"
+                rml="sale_bagus_improvememt/report/sale_order_bagus.rml" string="Sales Order "
+                usage="default"/>
+
+    </data>
+</openerp>
