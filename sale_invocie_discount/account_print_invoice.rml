@@ -70,20 +70,6 @@
       <lineStyle kind="LINEABOVE" colorName="#000000" start="1,3" stop="1,3"/>
       <lineStyle kind="LINEABOVE" colorName="#000000" start="2,3" stop="2,3"/>
     </blockTableStyle>
-    <blockTableStyle id="Table9">
-      <blockAlignment value="LEFT"/>
-      <blockValign value="TOP"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
-    </blockTableStyle>
-    <blockTableStyle id="Table2">
-      <blockAlignment value="LEFT"/>
-      <blockValign value="TOP"/>
-      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
-    </blockTableStyle>
     <blockTableStyle id="Table1">
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
@@ -91,6 +77,7 @@
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
+    <paraStyle name="P1" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -135,19 +122,19 @@
     <blockTable colWidths="297.0,233.0" style="Table_Partner_Address">
       <tr>
         <td>
-          <para style="terp_default_8">
+          <para style="P1">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
+          <para style="P1">[[ display_address(o.partner_id) ]]</para>
+          <para style="P1">
             <font color="white"> </font>
           </para>
+          <para style="P1">Tel. : [[ (o.partner_id.phone) or removeParentNode('para') ]] </para>
+          <para style="P1">Fax : [[ (o.partner_id.fax) or removeParentNode('para') ]] </para>
+          <para style="P1">TIN : [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
         <td>
-          <para style="terp_default_8">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
-          <para style="terp_default_8">[[ display_address(o.partner_id) ]]</para>
           <para style="terp_default_8">
             <font color="white"> </font>
           </para>
-          <para style="terp_default_8">Tel. : [[ (o.partner_id.phone) or removeParentNode('para') ]] </para>
-          <para style="terp_default_8">Fax : [[ (o.partner_id.fax) or removeParentNode('para') ]] </para>
-          <para style="terp_default_8">TIN : [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -164,7 +151,7 @@
     <blockTable colWidths="177.0,177.0,177.0" style="Table_Invoice_General_Header">
       <tr>
         <td>
-          <para style="terp_tblheader_General_Centre">Description</para>
+          <para style="terp_tblheader_General_Centre">PO Number</para>
         </td>
         <td>
           <para style="terp_tblheader_General_Centre">Invoice Date</para>
@@ -190,7 +177,7 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="202.0,78.0,68.0,56.0,50.0,76.0" style="Table7">
+    <blockTable colWidths="202.0,73.0,41.0,83.0,55.0,76.0" style="Table7">
       <tr>
         <td>
           <para style="terp_tblheader_Details">Description</para>
@@ -214,7 +201,7 @@
     </blockTable>
     <section>
       <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
-      <blockTable colWidths="202.0,79.0,68.0,56.0,50.0,75.0" style="Table8">
+      <blockTable colWidths="201.0,72.0,42.0,83.0,56.0,75.0" style="Table8">
         <tr>
           <td>
             <para style="terp_default_9">[[ l.name ]]</para>
@@ -269,7 +256,7 @@
         </tr>
       </blockTable>
     </section>
-    <blockTable colWidths="391.0,54.0,85.0" style="Table10">
+    <blockTable colWidths="391.0,63.0,76.0" style="Table10">
       <tr>
         <td>
           <para style="terp_default_8">
@@ -277,7 +264,7 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Net Total:</para>
+          <para style="terp_default_9">Sub Total:</para>
         </td>
         <td>
           <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
@@ -326,44 +313,10 @@
     <para style="Text body">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="205.0,71.0,71.0,183.0" style="Table9">
-      <tr>
-        <td>
-          <para style="terp_tblheader_Details">Tax [[ o.tax_line==[] and removeParentNode('blockTable') ]]</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Base </para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Amount </para>
-        </td>
-        <td>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-        </td>
-      </tr>
-    </blockTable>
     <section>
-      <para style="terp_default_2">[[ repeatIn(o.tax_line,'t') ]]</para>
-      <blockTable colWidths="205.0,71.0,71.0,184.0" style="Table2">
-        <tr>
-          <td>
-            <para style="terp_default_8">[[ t.name ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_8">[[ formatLang(t.base, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_8">[[ (t.tax_code_id and t.tax_code_id.notprintable) and removeParentNode('blockTable') or '' ]] [[ formatLang(t.amount, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_8">
-              <font color="white"> </font>
-            </para>
-          </td>
-        </tr>
-      </blockTable>
+      <para style="terp_default_2">
+        <font color="white"> </font>
+      </para>
     </section>
     <para style="terp_default_9">
       <font color="white"> </font>

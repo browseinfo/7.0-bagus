@@ -56,7 +56,6 @@
       <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
     </blockTableStyle>
     <blockTableStyle id="Table5">
       <blockAlignment value="LEFT"/>
@@ -66,7 +65,6 @@
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
-      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
     </blockTableStyle>
     <blockTableStyle id="Table6">
       <blockAlignment value="LEFT"/>
@@ -213,7 +211,7 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="202.0,67.0,67.0,67.0,67.0,67.0" repeatRows="1" style="Table4">
+    <blockTable colWidths="202.0,67.0,67.0,100.0,100.0" repeatRows="1" style="Table4">
       <tr>
         <td>
           <para style="terp_tblheader_Details">Description</para>
@@ -228,16 +226,13 @@
           <para style="terp_tblheader_Details_Right">Unit Price</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Centre">[[not show_discount(user.id) and removeParentNode('para')]]Disc.(%)</para>
-        </td>
-        <td>
           <para style="terp_tblheader_Details_Right">Price</para>
         </td>
       </tr>
     </blockTable>
     <section>
       <para style="terp_default_1">[[repeatIn(o.order_line,'line')]]</para>
-      <blockTable colWidths="203.0,67.0,67.0,67.0,67.0,67.0" style="Table5">
+      <blockTable colWidths="203.0,67.0,67.0,100.0,100.0" style="Table5">
         <tr>
           <td>
             <para style="terp_default_9">[[ format(line.name) ]] </para>
@@ -250,9 +245,6 @@
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Centre_9">[[show_discount(user.id) and formatLang(line.discount, digits=get_digits(dp='Discount')) or '']]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id) ]] </para>
@@ -268,7 +260,7 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Net Total :</para>
+          <para style="terp_default_9">Net Total</para>
         </td>
         <td>
           <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
@@ -281,10 +273,10 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Discount</para>
+          <para style="terp_default_9">[[((o.discount_amt&gt;0) or removeParentNode('para')) and '']]Discount</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.discount_amt, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
+          <para style="terp_default_Right_9">[[((o.discount_amt&gt;0) or removeParentNode('para')) and '']][[ formatLang(o.discount_amt, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
         </td>
       </tr>
       <tr>
