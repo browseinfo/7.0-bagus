@@ -39,7 +39,7 @@ class order(report_sxw.rml_parse):
             return False
         return group_id in [x.id for x in self.pool.get('res.users').browse(cr, uid, uid, context=context).groups_id]
 
-report_sxw.report_sxw('report.sale.order.bagus', 'sale.order', 'addons/sale_bagus_improvememt/report/sale_order_bagus.rml', parser=order, header="external")
+report_sxw.report_sxw('report.sale.order.bagus', 'sale.order', 'addons/sale_bagus_improvememt/report/sale_order_bagus.rml', parser=order, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

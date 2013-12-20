@@ -1,8 +1,28 @@
 <?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
-    <pageTemplate id="first">
-      <frame id="first" x1="18.0" y1="42.0" width="535" height="758"/>
+    <pageTemplate>
+        <frame id="first" x1="1.3cm" y1="3.0cm" height="21.0cm" width="19.0cm"/>
+         <stylesheet>
+            <!-- Set here the default font to use for all <para> tags -->
+            <paraStyle name='Normal' fontName="DejaVu Sans"/>
+            <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+         </stylesheet>
+        <pageGraphics>
+            <setFont name="DejaVu Sans" size="8"/>
+            <image x="1.3cm" y="26.7cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+            <drawString x="1.3cm" y="26.3cm">[[ company.partner_id.name ]]</drawString>
+			<drawString x="1.3cm" y="26.0cm">[[ company.website or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.7cm">[[ company.partner_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.4cm">[[ company.street or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.1cm">[[ company.street2 or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.8cm">[[ company.city or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.5cm">[[ company.state_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.2cm">[[ company.country_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="25.9cm">[[ company.phone or '' ]]</drawString>
+     		<drawString x="15.7cm" y="25.6cm">[[ company.fax or '' ]]</drawString>
+		</pageGraphics>
     </pageTemplate>
   </template>
   <stylesheet>
@@ -150,6 +170,9 @@
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
+    <paraStyle name="P21" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P20" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT"/>
+    <paraStyle name="P19" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P1" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT"/>
     <paraStyle name="P2" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT"/>
     <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
@@ -209,44 +232,52 @@
       <font color="white"> </font>
     </para>
     <para style="P6">PURCHASE ORDER</para>
-    <para style="terp_default_9">
-      <font color="white"> </font>
-    </para>
-    <blockTable colWidths="76.0,241.0,209.0" style="Tableau1">
+    <blockTable colWidths="241.0,209.0" style="Tableau1">
       <tr>
-        <td>
-          <para style="P7">MESSERS</para>
-        </td>
-        <td>
-          <para style="terp_default_9">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
-          <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]]</para>
-          <para style="terp_default_9">
-            <font color="white"> </font>
-          </para>
-          <para style="terp_default_9">
-            <font color="white"> </font>
-          </para>
-          <para style="terp_default_9">Tél. : [[ (o.partner_id and o.partner_id.phone) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">Fax : [[ (o.partner_id and o.partner_id.fax) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">TVA : [[ (o.partner_id and o.partner_id.vat) or removeParentNode('para') ]]</para>
-        </td>
+
         <td>
           <para style="terp_default_9"/>
-          <blockTable colWidths="38.0,130.0" style="Table1">
+          <blockTable colWidths="20.0,130.0" style="Table1">
             <tr>
               <td>
-                <para style="P2">No:</para>
+                <para style="P2">MESSERS:</para>
               </td>
               <td>
-                <para style="P5">[[ (o.name) or '' ]] </para>
+	          <para style="P7">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
+	          <para style="P7">[[ o.partner_id and display_address(o.partner_id) ]]</para>
               </td>
             </tr>
             <tr>
               <td>
-                <para style="P2">DATE:</para>
+                <para style="P20">ATTENTION:</para>
               </td>
               <td>
-                <para style="P4">[[formatLang(o.date_order,date=True) ]]</para>
+                <para style="P5">[[ o.partner_id.name ]]</para>
+              </td>
+            </tr>
+          </blockTable>
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+        </td>
+
+        <td>
+          <para style="terp_default_9"/>
+          <blockTable colWidths="150.0,100.0" style="Table1">
+            <tr>
+              <td>
+                <para style="P21">No:</para>
+              </td>
+              <td>
+                <para style="P19">[[ (o.name) or '' ]] </para>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <para style="P21">DATE:</para>
+              </td>
+              <td>
+                <para style="P19">[[ date_month(o.date_order) or '' ]]</para>
               </td>
             </tr>
           </blockTable>
@@ -272,7 +303,7 @@
     <blockTable colWidths="116.0,418.0" style="Table2">
       <tr>
         <td>
-          <para style="P1">DESTINATION :</para>
+          <para style="P5">DESTINATION :</para>
         </td>
         <td>
           <para style="P5">[[ (o.destination_id and o.destination_id.name) or '' ]] </para>
@@ -280,7 +311,7 @@
       </tr>
       <tr>
         <td>
-          <para style="P1">CASE MARK :</para>
+          <para style="P5">CASE MARK :</para>
         </td>
         <td>
           <para style="P5">[[ (o.cash_mark) or '' ]] </para>
@@ -288,7 +319,7 @@
       </tr>
       <tr>
         <td>
-          <para style="P1">PACKING :</para>
+          <para style="P5">PACKING :</para>
         </td>
         <td>
           <para style="P5">[[ (o.packing_id and o.packing_id.name) or '' ]] </para>
@@ -296,34 +327,34 @@
       </tr>
       <tr>
         <td>
-          <para style="P1">SHIPMENT DATE :</para>
+          <para style="P5">DELIVERY TIME :</para>
         </td>
         <td>
-          <para style="P4">[[formatLang(o.delivery_date,date=True) ]]</para>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <para style="P1">SHIPPING :</para>
-        </td>
-        <td>
-          <para style="P5">[[ (o.delivery_id and o.delivery_id.name) or '' ]] </para>
+          <para style="P4"></para>
         </td>
       </tr>
       <tr>
         <td>
-          <para style="P1">TRADE TERM :</para>
+          <para style="P5">DELIVERY METHOD :</para>
         </td>
         <td>
-          <para style="P5">[[ (o.delivery_mark) or '' ]]</para>
+          <para style="P5">[[ (o.delivery_method) or '' ]] </para>
         </td>
       </tr>
       <tr>
         <td>
-          <para style="P1">PAYMENT TERMS :</para>
+          <para style="P5">DELIVERY TERMS :</para>
         </td>
         <td>
-          <para style="P5">[[ (o.payment_id and o.payment_id .name) or '' ]]</para>
+          <para style="P5">[[ (o.payment_terms and o.payment_terms.name) or '' ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">PAYMENT TERMS :</para>
+        </td>
+        <td>
+          <para style="P5">[[ (o.payment_term_id and o.payment_term_id .name) or '' ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -403,92 +434,41 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="248.0,286.0" style="Table4">
-      <tr>
-        <td>
-          <para style="P13">PAYMENT SCHEDULE</para>
-          <blockTable colWidths="70.0,60.0,56.0,57.0" repeatRows="1" style="Table5">
-            <tr>
-              <td>
-                <para style="P3">NAME</para>
-              </td>
-              <td>
-                <para style="P17">DATE</para>
-              </td>
-              <td>
-                <para style="P18">%</para>
-              </td>
-              <td>
-                <para style="terp_tblheader_Details_Right">AMOUNT</para>
-              </td>
-            </tr>
-          </blockTable>
-          <section>
-            <para style="terp_default_8">[[repeatIn(o.payment_line,'line')]]</para>
-            <blockTable colWidths="69.0,59.0,55.0,60.0" style="Table6">
-              <tr>
-                <td>
-                  <para style="terp_default_9">[[ line.name ]]</para>
-                </td>
-                <td>
-                  <para style="P14">
-                    <font face="Helvetica" size="9.0">[[formatLang(line.due_date,date=True) ]]</font>
-                  </para>
-                </td>
-                <td>
-                  <para style="terp_default_Right_9">[[ line.percent ]] </para>
-                </td>
-                <td>
-                  <para style="terp_default_Right_9">[[ formatLang(line.amount, digits=get_digits(dp='Account') ) ]]</para>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <para style="terp_default_8_Italic"/>
-                </td>
-                <td>
-                  <para style="terp_default_Right_9">
-                    <font color="white"> </font>
-                  </para>
-                </td>
-                <td>
-                  <para style="terp_default_Right_9">
-                    <font color="white"> </font>
-                  </para>
-                </td>
-                <td>
-                  <para style="terp_default_Right_9">
-                    <font color="white"> </font>
-                  </para>
-                </td>
-              </tr>
-            </blockTable>
-          </section>
-          <para style="P16">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="P11">
-            <font color="white"> </font>
-          </para>
-        </td>
-      </tr>
-    </blockTable>
     <para style="terp_default_9">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="535.0" style="Table7">
       <tr>
         <td>
-          <para style="P12">PT. TSUBACO INDONESIA</para>
+          <para style="P20">PT. TSUBACO INDONESIA</para>
           <para style="P12">
             <font color="white"> </font>
           </para>
-          <para style="P12">AUTHORISED SIGNATURE</para>
+          <spacer length="1cm"/>
+          <!--para style="P20">Authorised Signature</para-->
         </td>
       </tr>
     </blockTable>
+	<blockTable colWidths="200.0,250.0,150.0" style="Table7">
+	 <tr>
+		<td>
+			<para>__________________________________</para>
+		</td>	
+		<td><para><font color="white"> </font></para></td>
+		<td>
+			<para>_________________________</para>	
+		</td>
+	</tr>
+	 <tr>
+		<td>
+			<para>Company's Stamp,Sign &amp; Return </para>
+		</td>	
+		<td><para><font color="white"> </font></para></td>
+		<td>
+			<para>Authorised Signature</para>	
+		</td>
+	</tr>
+	</blockTable>
     <para style="terp_default_9"/>
     <para style="terp_default_9">
       <font color="white"> </font>

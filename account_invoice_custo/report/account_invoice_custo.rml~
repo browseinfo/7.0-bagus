@@ -1,8 +1,28 @@
 <?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
-    <pageTemplate id="first">
-      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+    <pageTemplate>
+        <frame id="first" x1="1.3cm" y1="3.0cm" height="18.0cm" width="19.0cm"/>
+         <stylesheet>
+            <!-- Set here the default font to use for all <para> tags -->
+            <paraStyle name='Normal' fontName="DejaVu Sans"/>
+            <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+         </stylesheet>
+        <pageGraphics>
+            <setFont name="DejaVu Sans" size="8"/>
+            <image x="1.3cm" y="26.7cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+            <drawString x="1.3cm" y="26.3cm">[[ company.partner_id.name ]]</drawString>
+			<drawString x="1.3cm" y="26.0cm">[[ company.website or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.7cm">[[ company.partner_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.4cm">[[ company.street or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.1cm">[[ company.street2 or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.8cm">[[ company.city or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.5cm">[[ company.state_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.2cm">[[ company.country_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="25.9cm">[[ company.phone or '' ]]</drawString>
+     		<drawString x="15.7cm" y="25.6cm">[[ company.fax or '' ]]</drawString>
+		</pageGraphics>
     </pageTemplate>
   </template>
   <stylesheet>
@@ -222,6 +242,7 @@
     </para>
     <para style="P10">INVOICE</para>
     <para style="P11">NPWP: 02 .881.853.2-076.000</para>
+	<spacer length="2cm"/>
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
@@ -494,6 +515,13 @@
         </td>
       </tr>
     </blockTable>
+    <blockTable colWidths="482.0" style="Table8">
+      <tr>
+        <td>
+          <para style="P9"><b>PT. TSUBACO INDONESIA</b></para>
+        </td>
+      </tr>
+    </blockTable>
     <para style="Text body">
       <font face="Helvetica" size="10.0"/>
     </para>
@@ -526,17 +554,21 @@
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="482.0" style="Table8">
-      <tr>
+	<blockTable colWidths="450.0,200.0" style="Table8">
+	  <tr>
+		<td></td>
         <td>
-          <para style="P9">PT. TSUBACO INDONESIA</para>
-          <para style="P9">
-            <font color="white"> </font>
-          </para>
-          <para style="P9">AUTHORISED SIGNATURE </para>
+          <para>______<u>Lireshi Miyachi</u></para>
+        </td>	
+	 </tr>
+	</blockTable>
+	<blockTable colWidths="482.0" style="Table8">
+	 <tr>
+        <td>
+          <para style="P9">Authorize Signature </para>
         </td>
-      </tr>
-    </blockTable>
+      </tr>	
+	</blockTable>
     <para style="Text body">
       <font color="white"> </font>
     </para>

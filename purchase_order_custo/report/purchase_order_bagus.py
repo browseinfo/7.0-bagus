@@ -29,6 +29,7 @@ class purchase_order_custo(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time, 
             'show_discount':self._show_discount,
+            'date_month':self._date_month,
         })
 
     def _show_discount(self, uid, context=None):
@@ -38,8 +39,12 @@ class purchase_order_custo(report_sxw.rml_parse):
         except:
             return False
         return group_id in [x.id for x in self.pool.get('res.users').browse(cr, uid, uid, context=context).groups_id]
+    def _date_month(self, datedetail):
+       date = time.strptime(datedetail,'%Y-%m-%d')
+       month = time.strftime('%d %B %Y', date)
+       return month
 
-report_sxw.report_sxw('report.purchase.order.custo', 'purchase.order', 'addons/purchase_order_custo/report/purchase_order_custo.rml', parser=purchase_order_custo, header="external")
+report_sxw.report_sxw('report.purchase.order.custo', 'purchase.order', 'addons/purchase_order_custo/report/purchase_order_custo.rml', parser=purchase_order_custo, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
