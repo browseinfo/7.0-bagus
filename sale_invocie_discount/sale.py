@@ -19,27 +19,16 @@
 #
 ##############################################################################
 
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 import time
+from openerp import pooler
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
+import openerp.addons.decimal_precision as dp
+from openerp import netsvc
 
-from openerp.report import report_sxw
 
-class order(report_sxw.rml_parse):
-    def __init__(self, cr, uid, name, context=None):
-        super(order, self).__init__(cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time, 
-            'show_discount':self._show_discount,
-        })
-
-    def _show_discount(self, uid, context=None):
-        cr = self.cr
-        try: 
-            group_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'sale', 'group_discount_per_so_line')[1]
-        except:
-            return False
-        return group_id in [x.id for x in self.pool.get('res.users').browse(cr, uid, uid, context=context).groups_id]
-
-report_sxw.report_sxw('report.sale.order.bagus', 'sale.order', 'addons/sale_bagus_improvememt/report/sale_order_bagus.rml', parser=order, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

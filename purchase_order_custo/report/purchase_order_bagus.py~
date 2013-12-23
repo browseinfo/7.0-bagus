@@ -29,7 +29,7 @@ class purchase_order_custo(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time, 
             'show_discount':self._show_discount,
-            'date_month':self.
+            'date_month':self._date_month,
         })
 
     def _show_discount(self, uid, context=None):

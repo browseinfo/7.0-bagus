@@ -26,6 +26,7 @@ from openerp.osv import fields, osv
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
 import openerp.addons.decimal_precision as dp
 
+from openerp import netsvc
 from os.path import join
 from tools.translate import _
 from xlwt import Workbook, easyxf, Formula
@@ -233,6 +234,21 @@ class sale_order(osv.osv):
         out = ws.save(file)
         self.write(cr, uid, ids, {'pac_file': base64.encodestring(file.getvalue())})
         return True
+
+    def print_quotation(self, cr, uid, ids, context=None):
+        '''
+        This function prints the sales order and mark it as sent, so that we can see more easily the next step of the workflow
+        '''
+        assert len(ids) == 1, 'This option should only be used for a single id at a time'
+        wf_service = netsvc.LocalService("workflow")
+        wf_service.trg_validate(uid, 'sale.order', ids[0], 'quotation_sent', cr)
+        datas = {
+                 'model': 'sale.order',
+                 'ids': ids,
+                 'form': self.read(cr, uid, ids[0], context=context),
+        }
+        return {'type': 'ir.actions.report.xml', 'report_name': 'sale.order.bagus', 'datas': datas, 'nodestroy': True}
+
 
 sale_order()
 
