@@ -40,6 +40,24 @@ class account_invoice1(osv.osv):
         'account_tax_custo_line': fields.one2many('account.tax.custo', 'invoice_id', 'Tax Report Line', readonly=True, states={'draft': [('readonly', False)]}),
     }
 
+    def invoice_print(self, cr, uid, ids, context=None):
+        '''
+        This function prints the invoice and mark it as sent, so that we can see more easily the next step of the workflow
+        '''
+        assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+        self.write(cr, uid, ids, {'sent': True}, context=context)
+        datas = {
+            'ids': ids,
+            'model': 'account.invoice',
+            'form': self.read(cr, uid, ids[0], context=context)
+        }
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'account.invoice.custo',
+            'datas': datas,
+            'nodestroy' : True
+        }
+
 account_invoice1()
 
 class res_partner_bank1(osv.osv):

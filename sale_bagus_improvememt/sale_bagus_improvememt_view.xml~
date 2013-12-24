@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
 				<xpath expr="//button[@name='print_quotation']" position="replace">
-					<button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+					<button name="invoice_print" string="Print" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', '!=', 'open')]}" class="oe_highlight" groups="base.group_user"/>
 				</xpath>
                 <xpath expr="//button[@name='invoice_cancel']" position="after">
                     <button string="Generate payment lines" name="generate_payment_lines" states="manual,progress" type="object" icon="gtk-execute"/>

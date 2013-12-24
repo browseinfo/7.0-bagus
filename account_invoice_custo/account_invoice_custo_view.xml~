@@ -7,6 +7,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
+				<xpath expr="//button[@name='invoice_print']" position="replace">
+					<button name="invoice_print" string="Print" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', '!=', 'open')]}" class="oe_highlight" groups="base.group_user"/>
+				</xpath>
                 <field name="fiscal_position" position="after">
                     <field name="formm"/>
                     <field name="to"/>
@@ -73,7 +76,7 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='user_id']" position="replace" >
-                    <field name="user_id" string="Shipping agent"/>
+                    <field name="user_id" string="Shipping Agent"/>
                 </xpath>
             </field>
         </record>
