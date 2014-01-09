@@ -243,7 +243,7 @@
                 <para style="P2">MESSERS:</para>
               </td>
               <td>
-	          <para style="P7">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
+	          <!--para style="P7">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para-->
 	          <para style="P7">[[ o.partner_id and display_address(o.partner_id) ]]</para>
               </td>
             </tr>
@@ -252,7 +252,7 @@
                 <para style="P20">ATTENTION:</para>
               </td>
               <td>
-                <para style="P5">[[ o.partner_id.name ]]</para>
+                <para style="P7">[[ o.partner_id.name ]]</para>
               </td>
             </tr>
           </blockTable>
@@ -416,7 +416,7 @@
         </tr>
       </blockTable>
     </section>
-    <blockTable colWidths="394.0,55.0,85.0" style="Table_All_Total_Detail">
+    <blockTable colWidths="394.0,55.0,100.0" style="Table_All_Total_Detail">
       <tr>
         <td>
           <para style="terp_default_9">
@@ -438,6 +438,7 @@
       <font color="white"> </font>
     </para>
     <blockTable colWidths="535.0" style="Table7">
+	  <tr><td><para>[[ o.notes or '' ]]</para></td></tr>
       <tr>
         <td>
           <para style="P20">PT. TSUBACO INDONESIA</para>
@@ -445,7 +446,6 @@
             <font color="white"> </font>
           </para>
           <spacer length="1cm"/>
-          <!--para style="P20">Authorised Signature</para-->
         </td>
       </tr>
     </blockTable>
