@@ -193,8 +193,8 @@
     <paraStyle name="P13" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P14" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P15" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P16" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0"/>
-    <paraStyle name="P17" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P16" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P17" fontName="Helvetica" fontSize="10.0" leading="13" alignment="RIGHT"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -221,8 +221,7 @@
     <images/>
   </stylesheet>
   <story>
-    <para style="P9">[[ repeatIn(objects,'o') ]]</para>
-    <para style="P9">[[ setLang(o.partner_id.lang) ]]</para>
+    <para style="P9">[[ repeatIn(objects,'o') ]][[ setLang(o.partner_id.lang) ]]</para>
     <para style="P10">INVOICE</para>
     <para style="P8">NPWP: 02 .881.853.2-076.000</para>
     <para style="P8">
@@ -493,13 +492,10 @@
           <para style="terp_tblheader_Details">Total:</para>
         </td>
         <td>
-          <para style="P17">[[ o.currency_id.symbol ]] [[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]]</para>
+          <para style="P16">[[ o.currency_id.symbol ]] [[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]]</para>
         </td>
       </tr>
     </blockTable>
-    <para style="P12">
-      <font color="white"> </font>
-    </para>
     <para style="P12">BANK REFERENCES</para>
     <blockTable colWidths="96.0,386.0" style="Table7">
       <tr>
@@ -534,12 +530,19 @@
           <para style="P6">
             <font color="white"> </font>
           </para>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
           <para style="P6">AUTHORISED SIGNATURE</para>
         </td>
       </tr>
     </blockTable>
-    <para style="Text body">
-      <font color="white"> </font>
-    </para>
+    <para style="Text body"/>
   </story>
 </document>
