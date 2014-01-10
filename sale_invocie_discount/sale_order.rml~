@@ -1,28 +1,8 @@
 <?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
-    <pageTemplate>
-        <frame id="first" x1="1.3cm" y1="3.0cm" height="21.0cm" width="19.0cm"/>
-         <stylesheet>
-            <!-- Set here the default font to use for all <para> tags -->
-            <paraStyle name='Normal' fontName="DejaVu Sans"/>
-            <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
-            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
-         </stylesheet>
-        <pageGraphics>
-            <setFont name="DejaVu Sans" size="8"/>
-            <image x="1.3cm" y="26.7cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
-            <drawString x="1.3cm" y="26.3cm">[[ company.partner_id.name ]]</drawString>
-			<drawString x="1.3cm" y="26.0cm">[[ company.website or '' ]]</drawString>
-			<drawString x="15.7cm" y="27.7cm">[[ company.partner_id.name or '' ]]</drawString>
-			<drawString x="15.7cm" y="27.4cm">[[ company.street or '' ]]</drawString>
-			<drawString x="15.7cm" y="27.1cm">[[ company.street2 or '' ]]</drawString>
-			<drawString x="15.7cm" y="26.8cm">[[ company.city or '' ]]</drawString>
-			<drawString x="15.7cm" y="26.5cm">[[ company.state_id.name or '' ]]</drawString>
-			<drawString x="15.7cm" y="26.2cm">[[ company.country_id.name or '' ]]</drawString>
-			<drawString x="15.7cm" y="25.9cm">[[ company.phone or '' ]]</drawString>
-     		<drawString x="15.7cm" y="25.6cm">[[ company.fax or '' ]]</drawString>
-		</pageGraphics>
+    <pageTemplate id="first">
+      <frame id="first" x1="15.0" y1="42.0" width="539" height="758"/>
     </pageTemplate>
   </template>
   <stylesheet>
@@ -178,9 +158,6 @@
           <para style="terp_default_9">
             <font color="white"> </font>
           </para>
-          <para style="terp_default_9">Tel. : [[ (o.partner_id.phone) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">Fax : [[ (o.partner_id.fax) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">TVA : [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">
             <font color="white"> </font>
           </para>
@@ -267,7 +244,7 @@
             <para style="terp_default_Right_9">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id) ]] </para>
+            <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id )]] </para>
           </td>
         </tr>
       </blockTable>
@@ -283,7 +260,7 @@
           <para style="terp_default_9">Net Total</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(currency_obj=o.pricelist_id.currency_id, o.amount_untaxed, dp='Account' )]]</para>
         </td>
       </tr>
       <tr>
@@ -296,7 +273,7 @@
           <para style="terp_default_9">[[((o.discount_amt&gt;0) or removeParentNode('para')) and '']]Discount</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[((o.discount_amt&gt;0) or removeParentNode('para')) and '']][[ formatLang(o.discount_amt, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
+          <para style="terp_default_Right_9">[[((o.discount_amt&gt;0) or removeParentNode('para')) and '']][[ formatLang(currency_obj=o.pricelist_id.currency_id, o.discount_amt, dp='Account') ]]</para>
         </td>
       </tr>
       <tr>
@@ -309,7 +286,7 @@
           <para style="terp_default_9">Taxes :</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(currency_obj=o.pricelist_id.currency_id, o.amount_tax, dp='Account') ]]</para>
         </td>
       </tr>
       <tr>
@@ -322,7 +299,7 @@
           <para style="terp_default_Bold_9">Total :</para>
         </td>
         <td>
-          <para style="terp_default_Right_9_Bold">[[ formatLang(o.amount_total, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
+          <para style="terp_default_Right_9_Bold">[[ formatLang(currency_obj=o.pricelist_id.currency_id, o.amount_total, dp='Account' )]]</para>
         </td>
       </tr>
     </blockTable>

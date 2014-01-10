@@ -122,6 +122,7 @@
     <paraStyle name="P16" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P17" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P18" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P19" fontName="Helvetica" fontSize="6.0" leading="8"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="12.0" spaceAfter="6.0"/>
@@ -161,15 +162,12 @@
     <images/>
   </stylesheet>
   <story>
-    <para style="P1">
+    <para style="P9">
       <font color="white"> </font>
     </para>
-    <para style="P1">
-      <font color="white"> </font>
-    </para>
-    <para style="P1">[[repeatIn(objects,'o')]]</para>
-    <para style="P1">[[ setLang(o.partner_id.lang) ]]</para>
-    <para style="P6">
+    <para style="P9">[[repeatIn(objects,'o')]]</para>
+    <para style="P9">[[ setLang(o.partner_id.lang) ]]</para>
+    <para style="P9">
       <font color="white"> </font>
     </para>
     <para style="P18">SALE ORDER</para>
@@ -287,7 +285,7 @@
             <para style="P1">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para>
           </td>
           <td>
-            <para style="P2">[[ formatLang(currency_obj=o.pricelist_id.currency_id), line.price_subtotal, digits=get_digits(dp='Account') ]] </para>
+            <para style="P2">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id) ]] </para>
           </td>
         </tr>
       </blockTable>
@@ -303,7 +301,7 @@
           <para style="P1">Total :</para>
         </td>
         <td>
-          <para style="P2">[[ formatLang(currency_obj=o.pricelist_id.currency_id), o.amount_untaxed, dp='Account' ]]</para>
+          <para style="P2">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
         </td>
       </tr>
       <tr>
@@ -331,7 +329,7 @@
           <para style="P1">Vat 10% :</para>
         </td>
         <td>
-          <para style="P2">[[ formatLang(currency_obj=o.pricelist_id.currency_id), o.amount_tax, dp='Account' ]]</para>
+          <para style="P2">[[ formatLang(o.amount_tax, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
         </td>
       </tr>
       <tr>
@@ -344,7 +342,7 @@
           <para style="P3">Grand Total :</para>
         </td>
         <td>
-          <para style="P4">[[ formatLang(currency_obj=o.pricelist_id.currency_id), o.amount_total, dp='Account' ]]</para>
+          <para style="P4">[[ formatLang(o.amount_total, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
         </td>
       </tr>
     </blockTable>
