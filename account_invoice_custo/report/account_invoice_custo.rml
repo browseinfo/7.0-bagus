@@ -193,9 +193,8 @@
     <paraStyle name="P13" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P14" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P15" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P16" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P17" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P18" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P16" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P17" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -424,13 +423,13 @@
             <para style="P15">[[ formatLang(l.quantity)]] [[ (l.uos_id and l.uos_id.name) or '' ]]</para>
           </td>
           <td>
-            <para style="P15">[[ formatLang(l.price_unit, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+            <para style="P15">[[ o.currency_id.symbol ]] [[ formatLang(l.price_unit, digits=get_digits(dp='Account')) ]]</para>
             <para style="P15">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="P15">[[ formatLang(l.price_subtotal, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+            <para style="P15">[[ o.currency_id.symbol ]] [[ formatLang(l.price_subtotal, digits=get_digits(dp='Account')) ]]</para>
           </td>
         </tr>
         <tr>
@@ -468,7 +467,7 @@
           <para style="terp_default_9">Net Total:</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+          <para style="terp_default_Right_9">[[ o.currency_id.symbol ]] [[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]]</para>
         </td>
       </tr>
       <tr>
@@ -481,7 +480,7 @@
           <para style="terp_default_9">Taxes:</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+          <para style="terp_default_Right_9">[[ o.currency_id.symbol ]] [[ formatLang(o.amount_tax, digits=get_digits(dp='Account')) ]]</para>
         </td>
       </tr>
       <tr>
@@ -494,10 +493,13 @@
           <para style="terp_tblheader_Details">Total:</para>
         </td>
         <td>
-          <para style="P18">[[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+          <para style="P17">[[ o.currency_id.symbol ]] [[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]]</para>
         </td>
       </tr>
     </blockTable>
+    <para style="P12">
+      <font color="white"> </font>
+    </para>
     <para style="P12">BANK REFERENCES</para>
     <blockTable colWidths="96.0,386.0" style="Table7">
       <tr>
@@ -536,6 +538,8 @@
         </td>
       </tr>
     </blockTable>
-    <para style="Text body"/>
+    <para style="Text body">
+      <font color="white"> </font>
+    </para>
   </story>
 </document>
