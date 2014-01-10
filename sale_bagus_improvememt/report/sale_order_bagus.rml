@@ -121,8 +121,8 @@
     <paraStyle name="P15" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P16" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P17" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P18" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P19" fontName="Helvetica" fontSize="6.0" leading="8"/>
+    <paraStyle name="P18" fontName="Helvetica-Bold" fontSize="10.0" leading="13" alignment="RIGHT"/>
+    <paraStyle name="P19" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="12.0" spaceAfter="6.0"/>
@@ -165,12 +165,8 @@
     <para style="P9">
       <font color="white"> </font>
     </para>
-    <para style="P9">[[repeatIn(objects,'o')]]</para>
-    <para style="P9">[[ setLang(o.partner_id.lang) ]]</para>
-    <para style="P9">
-      <font color="white"> </font>
-    </para>
-    <para style="P18">SALE ORDER</para>
+    <para style="P9">[[repeatIn(objects,'o')]][[ setLang(o.partner_id.lang) ]]</para>
+    <para style="P19">OFFER</para>
     <para style="P6">
       <font color="white"> </font>
     </para>
@@ -428,6 +424,12 @@
       <tr>
         <td>
           <para style="P12">PT. TSUBACO INDONESIA</para>
+          <para style="P12">
+            <font color="white"> </font>
+          </para>
+          <para style="P12">
+            <font color="white"> </font>
+          </para>
           <para style="P12">
             <font color="white"> </font>
           </para>
