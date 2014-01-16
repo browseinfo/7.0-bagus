@@ -59,19 +59,9 @@ class sale_order(osv.osv):
         for line in self.pool.get('sale.order.line').browse(cr, uid, ids, context=context):
             result[line.order_id.id] = True
         return result.keys()
-    def _discout_visible(self, cr, uid, ids, name, args, context=None):
-        res = {}
-        if not ids:
-            return {}
-        for sale in self.browse(cr, uid, ids, context=context):
-            if sale.discount_amt <= 0.0:
-                res[sale.id] = False
-            else: 
-                res[sale.id] = True
-        return res
 
     _columns = {
-        'hide_discount': fields.function(_discout_visible, string='Hide Discount', type='boolean',store=True),
+        'hide_discount': fields.boolean('Hide Discount'),
         'discount_method': fields.selection([('fix', 'Fixed'),('per', 'Percentage')], 'Discount Method'),
         'discount_amount': fields.float('Discount Amount'),
         'discount_amt': fields.float('- Discount', readonly=True,),
@@ -102,14 +92,21 @@ class sale_order(osv.osv):
         disc_methd = self.browse(cr, uid, ids, context=context)[0].discount_method
         new_amt = 0.0
         new_amtt = 0.0
+        res = {}
+        if not disc_amt or disc_amt == 0.0:
+            self.write(cr, uid, ids, {'discount_amt': 0.0, 'discount_amount': 0.0, 'hide_discount': False})
+            
         if disc_amt:
             if disc_methd =='fix':
                 new_amt = amount_total - disc_amt
                 new_amtt = disc_amt
-            if disc_methd =='per':
+                self.write(cr, uid, ids, {'discount_amt': new_amtt, 'hide_discount': True})
+            elif disc_methd =='per':
                 new_amtt = amount_total * disc_amt / 100
                 new_amt = amount_total * (1 - (disc_amt or 0.0) / 100.0)
-            self.write(cr, uid, ids, {'discount_amt': new_amtt})
+                self.write(cr, uid, ids, {'discount_amt': new_amtt, 'hide_discount': True})
+            else:
+                self.write(cr, uid, ids, {'discount_amt': 0.0, 'discount_amount': 0.0, 'hide_discount': False})
             sql = "update sale_order set amount_total=%s where id=%s"
             cr.execute(sql, (new_amt, ids[0]))
         return True

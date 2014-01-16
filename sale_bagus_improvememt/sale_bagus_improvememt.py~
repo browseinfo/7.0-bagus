@@ -103,9 +103,21 @@ class account_invoice(osv.osv):
 account_invoice()
 
 class sale_order(osv.osv):
-    _inherit = 'sale.order'
+    _inherit = 'sale.order' 
+
+    def _discout_visible(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        if not ids:
+            return {}
+        for sale in self.browse(cr, uid, ids, context=context):
+            if sale.discount_amt <= 0.0:
+                res[sale.id] = False
+            else: 
+                res[sale.id] = True
+        return res
 
     _columns = {
+        'hide_discount': fields.function(_discout_visible, string='Hide Discount', type='boolean',store=True),
         'delivery_id': fields.many2one('sale.delivery', 'Delivery', select=True),
         'packing_id': fields.many2one('sale.packaging', 'Packing', select=True),
         'payment_id': fields.many2one('sale.payment', 'Payment', select=True),
@@ -116,7 +128,7 @@ class sale_order(osv.osv):
         'image': fields.binary("Logo", help="This field holds the image used as logo, limited to 1024x1024px."),
         'payment_line': fields.one2many('sale.pay', 'so_id', 'Order Payments', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}),
         'project': fields.char('Project'),
-    }
+                }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         """Prepare the dict of values to create the new invoice for a

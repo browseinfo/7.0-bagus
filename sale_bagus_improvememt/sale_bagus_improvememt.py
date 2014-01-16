@@ -105,6 +105,16 @@ account_invoice()
 class sale_order(osv.osv):
     _inherit = 'sale.order' 
 
+    def _discout_visible(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        if not ids:
+            return {}
+        for sale in self.browse(cr, uid, ids, context=context):
+            if sale.discount_amt <= 0.0:
+                res[sale.id] = False
+            else: 
+                res[sale.id] = True
+        return res
 
     _columns = {
         'delivery_id': fields.many2one('sale.delivery', 'Delivery', select=True),
