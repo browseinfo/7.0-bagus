@@ -118,7 +118,6 @@
     <paraStyle name="P10" rightIndent="3.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P11" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P12" fontName="Helvetica" fontSize="9.0" leading="11" spaceBefore="0.0" spaceAfter="6.0"/>
-    <paraStyle name="P13" rightIndent="3.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
@@ -168,13 +167,13 @@
           <para style="P8">MESSERS</para>
         </td>
         <td>
-          <para style="terp_default_9">[[ (o.partner_id and o.partner_id.name) or '' ]] </para>
-          <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]]</para>
+          <para style="terp_default_9">[[ (o.partner_id.parent_id.name) or '' ]] </para>
+          <para style="terp_default_9">[[ o.partner_id.parent_id and display_address(o.partner_id.parent_id) ]]</para>
           <para style="terp_default_9">
             <font color="white"> </font>
           </para>
-          <para style="terp_default_9">Tél. : [[ (o.partner_id and o.partner_id.phone) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">Fax : [[ (o.partner_id and o.partner_id.fax) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">Tél. : [[ (o.parent_id and o.parent_id.phone) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">Fax : [[ (o.parent_id and o.parent_id.fax) or removeParentNode('para') ]]</para>
         </td>
         <td>
           <para style="terp_default_9"/>
@@ -210,7 +209,7 @@
         <td>
           <para style="P12">
             <font face="Helvetica">ATTENTION: </font>
-            <font face="Helvetica">[[ o.partner_id.title.name or '' ]]</font>
+            <font face="Helvetica">[[ o.partner_id.name or '' ]]</font>
           </para>
         </td>
       </tr>
