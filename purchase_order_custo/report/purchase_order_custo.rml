@@ -1,8 +1,28 @@
 <?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
-    <pageTemplate id="first">
-      <frame id="first" x1="18.0" y1="42.0" width="535" height="758"/>
+    <pageTemplate>
+        <frame id="first" x1="1.3cm" y1="3.0cm" height="21.0cm" width="19.0cm"/>
+         <stylesheet>
+            <!-- Set here the default font to use for all <para> tags -->
+            <paraStyle name='Normal' fontName="DejaVu Sans"/>
+            <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+         </stylesheet>
+        <pageGraphics>
+            <setFont name="DejaVu Sans" size="8"/>
+            <image x="1.3cm" y="26.7cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+            <drawString x="1.3cm" y="26.3cm">[[ company.partner_id.name ]]</drawString>
+			<drawString x="1.3cm" y="26.0cm">[[ company.website or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.7cm">[[ company.partner_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.4cm">[[ company.street or '' ]]</drawString>
+			<drawString x="15.7cm" y="27.1cm">[[ company.street2 or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.8cm">[[ company.city or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.5cm">[[ company.state_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="26.2cm">[[ company.country_id.name or '' ]]</drawString>
+			<drawString x="15.7cm" y="25.9cm">[[ company.phone or '' ]]</drawString>
+     		<drawString x="15.7cm" y="25.6cm">[[ company.fax or '' ]]</drawString>
+		</pageGraphics>
     </pageTemplate>
   </template>
   <stylesheet>
@@ -365,7 +385,27 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <para style="P9"><font face="Helvetica">Term and Condition </font>[[ o.notes]]</para>
+	<blockTable colWidths="120.0,100.0,22.0,263.0" style="Table1">
+		<tr>
+			<td>
+				<para style="P9">Term and Condition [[ o.notes]] </para>
+			</td>
+			<td>
+				<para style="P9">Your Quotatian NO.</para>
+			</td> 
+			<td>
+				<para style="P9">[[ o.name ]]</para>
+			</td> 
+			<td>
+				<para style="terp_default_9">
+					<font color="white"> </font>
+				</para>
+			</td>
+		</tr>  
+     
+	</blockTable>
+
+    <!--para style="P9"><font face="Helvetica">Term and Condition </font>[[ o.notes]]</para-->
     <blockTable colWidths="535.0" style="Table7">
       <tr>
         <td>
@@ -379,10 +419,21 @@
           <para style="P2">
             <font color="white"> </font>
           </para>
+        </td>
+      </tr>
+    </blockTable>
+
+    <blockTable colWidths="210.0,323.0" style="Table1">
+      <tr>
+        <td>
+          <para style="P2">Company's Sign Stamp and Return</para>
+        </td>
+        <td>
           <para style="P2">AUTHORISED SIGNATURE</para>
         </td>
       </tr>
     </blockTable>
+
     <para style="terp_default_9">
       <font color="white"> </font>
     </para>

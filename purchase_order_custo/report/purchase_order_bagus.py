@@ -44,7 +44,7 @@ class purchase_order_custo(report_sxw.rml_parse):
        month = time.strftime('%d %B %Y', date)
        return month
 
-report_sxw.report_sxw('report.purchase.order.custo', 'purchase.order', 'addons/purchase_order_custo/report/purchase_order_custo.rml', parser=purchase_order_custo)
+report_sxw.report_sxw('report.purchase.order.custo', 'purchase.order', 'addons/purchase_order_custo/report/purchase_order_custo.rml', parser=purchase_order_custo, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

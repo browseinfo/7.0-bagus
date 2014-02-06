@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False" id="report_purchase_order_custo_bagus" model="purchase.order" name="purchase.order.custo"
+                rml="purchase_order_custo/report/purchase_order_custo.rml" string="Quotation / Purchase Order"
+                usage="default"/>
+
+    </data>
+</openerp>

@@ -28,6 +28,6 @@
                 name="purchase.order"
                 rml="sale_invocie_discount/order.rml" 
                 string="Purchase Order"
-                usage="default"/>	
+                usage="default"/>
     </data>
 </openerp>
