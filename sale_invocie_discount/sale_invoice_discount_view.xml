@@ -25,8 +25,11 @@
                     </group>
                 </xpath>
                 <field name="amount_tax" position="before">
-                     <field name="discount_amt" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                     <field name="discount_amt" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('hide_discount', '=', False)]}"/>
                 </field>
+                <field name="amount_tax" position="after">
+				<field name="hide_discount" invisible="1"/>    
+				</field>          
                 <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
                     <field name="discount_method" />
                 </xpath>

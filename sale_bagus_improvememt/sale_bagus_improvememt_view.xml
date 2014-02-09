@@ -25,6 +25,7 @@
                         <field name="destination_id"/>
                         <field name="inspection_id"/>
                         <field name="validity"/>
+                        
                     </group>
                 </group>
                 </xpath>

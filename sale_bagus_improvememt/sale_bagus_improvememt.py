@@ -103,7 +103,8 @@ class account_invoice(osv.osv):
 account_invoice()
 
 class sale_order(osv.osv):
-    _inherit = 'sale.order'
+    _inherit = 'sale.order' 
+
 
     _columns = {
         'delivery_id': fields.many2one('sale.delivery', 'Delivery', select=True),
@@ -116,7 +117,7 @@ class sale_order(osv.osv):
         'image': fields.binary("Logo", help="This field holds the image used as logo, limited to 1024x1024px."),
         'payment_line': fields.one2many('sale.pay', 'so_id', 'Order Payments', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}),
         'project': fields.char('Project'),
-    }
+                }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         """Prepare the dict of values to create the new invoice for a

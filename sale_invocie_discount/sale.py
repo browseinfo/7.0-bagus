@@ -28,7 +28,10 @@ from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
-
-
+class sale_order(osv.osv):
+    _inherit = 'sale.order'
+    _columns = {
+        'hide_discount': fields.boolean('Hide Discount')
+}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

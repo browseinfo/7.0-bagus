@@ -59,8 +59,19 @@ class sale_order(osv.osv):
         for line in self.pool.get('sale.order.line').browse(cr, uid, ids, context=context):
             result[line.order_id.id] = True
         return result.keys()
-    
+    def _discout_visible(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        if not ids:
+            return {}
+        for sale in self.browse(cr, uid, ids, context=context):
+            if sale.discount_amt <= 0.0:
+                res[sale.id] = False
+            else: 
+                res[sale.id] = True
+        return res
+
     _columns = {
+        'hide_discount': fields.function(_discout_visible, string='Hide Discount', type='boolean',store=True),
         'discount_method': fields.selection([('fix', 'Fixed'),('per', 'Percentage')], 'Discount Method'),
         'discount_amount': fields.float('Discount Amount'),
         'discount_amt': fields.float('- Discount', readonly=True,),
