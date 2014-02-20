@@ -3,6 +3,25 @@
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
     <pageTemplate id="first">
       <frame id="first" x1="15.0" y1="42.0" width="539" height="758"/>
+         <stylesheet>
+            <!-- Set here the default font to use for all <para> tags -->
+            <paraStyle name='Normal' fontName="DejaVu Sans"/>
+            <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+         </stylesheet>
+        <pageGraphics>
+            <setFont name="DejaVu Sans" Align="RIGHT" size="8"/>
+            <image x="1.3cm" y="28.4cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+			<drawString x="1.3cm" y="28.0cm">[[ company.website or '' ]]</drawString>
+			<drawString x="16.0cm" y="29.3cm">[[ company.partner_id.name or '' ]]</drawString>
+			<drawString x="16.0cm" y="28.9cm">[[ company.street or '' ]]</drawString>
+			<drawString x="16.0cm" y="28.5cm">[[ company.street2 or '' ]]</drawString>
+			<drawString x="16.0cm" y="28.1cm">[[ company.city or '' ]],</drawString>
+			<drawString x="17.1cm" y="28.1cm">[[ company.zip or '' ]]</drawString>
+			<drawString x="18.0cm" y="28.1cm">[[ company.country_id.name or '' ]]</drawString>
+			<drawString x="16.0cm" y="27.6cm">Tel:[[ company.phone or '' ]]</drawString>
+     		<drawString x="16.0cm" y="27.2cm">Fax:[[ company.fax or '' ]]</drawString>
+		</pageGraphics>
     </pageTemplate>
   </template>
   <stylesheet>
@@ -360,46 +379,18 @@
       </tr>
     </blockTable>
 
-    <blockTable colWidths="540.0" style="Table8">
+
+    <blockTable colWidths="322.0,160.0" style="Table8">
       <tr>
         <td>
-          <para style="P19">
-            <font color="white"> </font>
-          </para>
-        </td>
-      </tr>
-    </blockTable>
-
-
-    <blockTable colWidths="351.0,188.0" style="Table8">
-      <tr>
-        <td>
-          <para style="P18"></para>
-          <para style="P10">
-            <font color="white"> </font>
-          </para>
-          <para style="P10">
-            <font color="white"> </font>
-          </para>
-          <para style="P10">
-            <font color="white"> </font>
-          </para>
           <para style="P21">Company's Sign Stamp and Return</para>
         </td>
         <td>
-          <para style="P20"></para>
-          <para style="P17">
-            <font color="white"> </font>
-          </para>
-          <para style="P20">
-             AUTHORISED SIGNATURE 
-          </para>
-          <para style="P19">
-            <font color="white"> </font>
-          </para>
+          <para style="P20">AUTHORISED SIGNATURE</para>
         </td>
       </tr>
     </blockTable>
+
     <para style="Standard">
       <font color="white"> </font>
     </para>
