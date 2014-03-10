@@ -2,7 +2,7 @@
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
     <pageTemplate id="first">
-      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+      <frame id="first" x1="57.0" y1="57.0" width="481" height="705"/>
          <stylesheet>
             <!-- Set here the default font to use for all <para> tags -->
             <paraStyle name='Normal' fontName="DejaVu Sans"/>
@@ -20,8 +20,7 @@
 			<drawString x="17.1cm" y="28.1cm">[[ company.zip or '' ]]</drawString>
 			<drawString x="18.0cm" y="28.1cm">[[ company.country_id.name or '' ]]</drawString>
 			<drawString x="16.0cm" y="27.6cm">Tel:[[ company.phone or '' ]]</drawString>
-     		<drawString x="16.0cm" y="27.2cm">Fax:[[ company.fax or '' ]]</drawString>
-     		<drawString x="16.0cm" y="26.8cm">Email:[[ company.email or '' ]]</drawString>
+     		<drawString x="16.0cm" y="27.2cm">Email:[[ company.email or '' ]]</drawString>
 		</pageGraphics>
     </pageTemplate>
   </template>
@@ -171,6 +170,11 @@
       <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
     </blockTableStyle>
+    <blockTableStyle id="Table44">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+
     <blockTableStyle id="Table5">
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
@@ -244,7 +248,7 @@
   </stylesheet>
   <story>
     <para style="P15">[[ repeatIn(objects,'o') ]][[ setLang(o.partner_id.lang) ]]</para>
-    <para style="P16">INVOICE</para>
+    <para style="P16">OFFER</para>
     <para style="P8">NPWP: 02 .881.853.2-076.000</para>
     <blockTable colWidths="109.0,373.0" style="Table1">
       <tr>
@@ -433,25 +437,36 @@
         </td>
       </tr>
     </blockTable>
+    <blockTable colWidths="224.0,72.0,98.0,88.0" style="Table44">
+      <tr>
+        <td>
+          <para style="terp_default_9">[[ o.project or removeParentNode('para') ]]</para>
+        </td>
+       <td>
+          <para style="P10"><font color="white"> </font></para>
+        </td>
+        <td>
+          <para style="P11"><font color="white"> </font></para>
+        </td>
+        <td>
+          <para style="P11"><font color="white"> </font></para>
+        </td>
+      </tr>
+    </blockTable>
     <section>
       <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
       <blockTable colWidths="222.0,76.0,99.0,86.0" style="Table5">
         <tr>
           <td>
-            <para style="terp_default_9">[[ o.project or removeParentNode('para') ]]</para>
-            <spacer length="0.2cm"/>
             <para style="terp_default_9">[[ l.name ]]</para>
           </td>
           <td>
-            <spacer length="0.6cm"/>
             <para style="P12">[[ formatLang(l.quantity,0)]] [[ (l.uos_id and l.uos_id.name) or '' ]]</para>
           </td>
           <td>
-            <spacer length="0.6cm"/>
             <para style="P12">[[ o.currency_id.symbol ]] [[ formatLang(l.price_unit, digits=get_digits(dp='Account')) ]]</para>
           </td>
           <td>
-            <spacer length="0.6cm"/>
             <para style="P12">[[ o.currency_id.symbol ]] [[ formatLang(l.price_subtotal, digits=get_digits(dp='Account')) ]]</para>
           </td>
         </tr>
@@ -583,9 +598,11 @@
     <blockTable colWidths="350.0,140.0" style="Table7">
       <tr>
         <td>
+          <para style="P23">____________________________________</para>
           <para style="P23">Company's Sign Stamp and Return</para>
         </td>
         <td>
+          <para style="P23">__________________________</para>
           <para style="P23">AUTHORISED SIGNATURE</para>
         </td>
       </tr>
